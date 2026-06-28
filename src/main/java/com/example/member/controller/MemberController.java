@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 public class MemberController {
@@ -19,10 +20,11 @@ public class MemberController {
     }
 
     @GetMapping("/members")
-    public String index(Model model) {
-        model.addAttribute("members", memberService.findAll());
-        return "members/index";
-    }
+    public String index(@RequestParam(required = false) String keyword, Model model) {
+    model.addAttribute("members", memberService.search(keyword));
+    model.addAttribute("keyword", keyword);
+    return "members/index";
+}
 
     @GetMapping("/members/new")
     public String newForm(Model model) {

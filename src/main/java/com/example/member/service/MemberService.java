@@ -18,6 +18,14 @@ public class MemberService {
     public List<Member> findAll() {
         return memberRepository.findAll();
     }
+    
+    public List<Member> search(String keyword) {
+    if (keyword == null || keyword.isBlank()) {
+        return memberRepository.findAll();
+    }
+
+    return memberRepository.search(keyword);
+}
 
     public Member findById(Long id) {
         return memberRepository.findById(id);

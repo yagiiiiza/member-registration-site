@@ -16,7 +16,11 @@
 <p>
     <a th:href="@{/members/new}">新規登録</a>
 </p>
-
+<form th:action="@{/members}" method="get">
+    <input type="text" name="keyword" th:value="${keyword}" placeholder="名前またはメールアドレスで検索">
+    <button type="submit">検索</button>
+    <a th:href="@{/members}">クリア</a>
+</form>
 <table border="1">
     <tr>
         <th>ID</th>
@@ -37,6 +41,10 @@
     </tr>
 </table>
 
+
+<p th:if="${#lists.isEmpty(members)}">
+    該当する会員が見つかりませんでした。
+</p>
 </body>
 
 </html>

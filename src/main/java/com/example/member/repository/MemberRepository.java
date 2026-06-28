@@ -26,6 +26,25 @@ public class MemberRepository {
         return jdbcTemplate.query(sql, memberRowMapper());
     }
 
+    public List<Member> search(String keyword) {
+    String sql = """
+            SELECT id, name, email, password, age, created_at, updated_at
+            FROM members
+            WHERE LOWER(name) LIKE LOWER(?)
+               OR LOWER(email) LIKE LOWER(?)
+            ORDER BY id
+            """;
+
+    String searchKeyword = "%" + keyword + "%";
+
+    return jdbcTemplate.query(
+            sql,
+            memberRowMapper(),
+            searchKeyword,
+            searchKeyword
+    );
+}
+
     public Member findById(Long id) {
         String sql = """
                 SELECT id, name, email, password, age, created_at, updated_at
@@ -92,4 +111,6 @@ public class MemberRepository {
             return member;
         };
     }
+
+    
 }
