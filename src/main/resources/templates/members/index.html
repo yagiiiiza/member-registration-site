@@ -9,6 +9,9 @@
 <body>
 
 <h1>会員一覧</h1>
+<form th:action="@{/logout}" method="post">
+    <button type="submit">ログアウト</button>
+</form>
 
 <p>
     <a th:href="@{/members/new}">新規登録</a>

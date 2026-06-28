@@ -4,12 +4,15 @@
 <head>
     <meta charset="UTF-8">
     <title th:text="${pageTitle}">会員フォーム</title>
+
 </head>
 
 <body>
 
 <h1 th:text="${pageTitle}">会員フォーム</h1>
-
+    <form th:action="@{/logout}" method="post">
+    <button type="submit">ログアウト</button>
+    </form>
 <form th:action="${memberForm.id == null} ? @{/members} : @{/members/{id}(id=${memberForm.id})}"
       th:object="${memberForm}"
       method="post">
@@ -53,6 +56,8 @@
 <p>
     <a th:href="@{/members}">一覧へ戻る</a>
 </p>
+
+
 
 </body>
 
