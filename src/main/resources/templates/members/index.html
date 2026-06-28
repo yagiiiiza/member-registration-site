@@ -18,35 +18,23 @@
 </p>
 
 <table border="1">
-    <thead>
     <tr>
         <th>ID</th>
         <th>名前</th>
         <th>メールアドレス</th>
         <th>年齢</th>
-        <th>登録日時</th>
-        <th>更新日時</th>
         <th>操作</th>
     </tr>
-    </thead>
 
-    <tbody>
     <tr th:each="member : ${members}">
         <td th:text="${member.id}"></td>
         <td th:text="${member.name}"></td>
         <td th:text="${member.email}"></td>
         <td th:text="${member.age}"></td>
-        <td th:text="${member.createdAt}"></td>
-        <td th:text="${member.updatedAt}"></td>
         <td>
-            <a th:href="@{/members/{id}/edit(id=${member.id})}">編集</a>
-
-            <form th:action="@{/members/{id}/delete(id=${member.id})}" method="post" style="display:inline;">
-                <button type="submit">削除</button>
-            </form>
+            <a th:href="@{/members/{id}(id=${member.id})}">詳細</a>
         </td>
     </tr>
-    </tbody>
 </table>
 
 </body>

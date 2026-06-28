@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>会員詳細</title>
+</head>
+<body>
+
+<h1>会員詳細</h1>
+
+<table border="1">
+    <tr>
+        <th>ID</th>
+        <td th:text="${member.id}"></td>
+    </tr>
+    <tr>
+        <th>名前</th>
+        <td th:text="${member.name}"></td>
+    </tr>
+    <tr>
+        <th>メールアドレス</th>
+        <td th:text="${member.email}"></td>
+    </tr>
+    <tr>
+        <th>年齢</th>
+        <td th:text="${member.age}"></td>
+    </tr>
+    <tr>
+        <th>作成日時</th>
+        <td th:text="${member.createdAt}"></td>
+    </tr>
+    <tr>
+        <th>更新日時</th>
+        <td th:text="${member.updatedAt}"></td>
+    </tr>
+</table>
+
+<br>
+
+<a th:href="@{/members/{id}/edit(id=${member.id})}">編集</a>
+
+<br><br>
+
+<form th:action="@{/members/{id}/delete(id=${member.id})}" method="post"
+      onsubmit="return confirm('本当に削除しますか？');">
+    <button type="submit">削除</button>
+</form>
+
+<br>
+
+<a th:href="@{/members}">一覧へ戻る</a>
+
+</body>
+</html>

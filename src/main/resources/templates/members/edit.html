@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>会員編集</title>
+</head>
+<body>
+
+<h1>会員編集</h1>
+
+<form th:action="@{/members/{id}/edit(id=${member.id})}" th:object="${member}" method="post">
+
+    <div>
+        <label>名前</label>
+        <input type="text" th:field="*{name}">
+    </div>
+
+    <div>
+        <label>メールアドレス</label>
+        <input type="email" th:field="*{email}">
+    </div>
+
+    <div>
+        <label>年齢</label>
+        <input type="number" th:field="*{age}">
+    </div>
+
+    <br>
+
+    <button type="submit">更新</button>
+</form>
+
+<br>
+
+<a th:href="@{/members/{id}(id=${member.id})}">詳細へ戻る</a>
+<br>
+<a th:href="@{/members}">一覧へ戻る</a>
+
+</body>
+</html>
