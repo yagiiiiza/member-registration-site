@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="ja" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <title th:text="${pageTitle}">会員フォーム</title>
+</head>
+
+<body>
+
+<h1 th:text="${pageTitle}">会員フォーム</h1>
+
+<form th:action="${memberForm.id == null} ? @{/members} : @{/members/{id}(id=${memberForm.id})}"
+      th:object="${memberForm}"
+      method="post">
+
+    <div>
+        <label for="name">名前</label><br>
+        <input type="text" id="name" th:field="*{name}">
+        <div th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></div>
+    </div>
+
+    <br>
+
+    <div>
+        <label for="email">メールアドレス</label><br>
+        <input type="email" id="email" th:field="*{email}">
+        <div th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></div>
+    </div>
+
+    <br>
+
+    <div>
+        <label for="password">パスワード</label><br>
+        <input type="text" id="password" th:field="*{password}">
+        <div th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></div>
+    </div>
+
+    <br>
+
+    <div>
+        <label for="age">年齢</label><br>
+        <input type="number" id="age" th:field="*{age}">
+        <div th:if="${#fields.hasErrors('age')}" th:errors="*{age}"></div>
+    </div>
+
+    <br>
+
+    <button type="submit" th:text="${buttonText}">登録</button>
+
+</form>
+
+<p>
+    <a th:href="@{/members}">一覧へ戻る</a>
+</p>
+
+</body>
+
+</html>
